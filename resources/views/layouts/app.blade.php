@@ -1,81 +1,89 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ \App\Custom::$info['short_name'] }} Chat Bot</title>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+{{--    <link rel="icon" href="{{ asset(\App\Custom::$info['c-logo']) }}">--}}
+    <link rel="stylesheet" href="{{ asset(\App\Custom::$info['main_css']) }}">
+    <link rel="stylesheet" href="{{asset('theme/vendor/feather-icons-web/feather.css')}}">
+    <link rel="stylesheet" href="{{asset('theme/vendor/font-awesome/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('theme/vendor/animate_it/animate.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/css/summernote-bs4.css') }}">
+    <link rel="stylesheet" href="{{ asset('theme/vendor/data_table/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('theme/css/style.css') }}">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('head')
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+    <div class="container-fluid">
+        <div class="row">
+            <!--        aside left start -->
+            <div class="col-12 col-md-6 col-lg-3 col-xl-2 vh-100 aside-menu p-0">
+                @include('layouts.nav')
+            </div>
+            <!--        aside left end -->
+            <div class="col-12 col-md-12 col-lg-9 col-xl-10 vh-100 mt-2 content">
+                <div class="container-fluid">
+                    <div class="row">
 
-                    </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                        <!-- content start-->
+                        <div class="col-12 px-0">
+                            @include('layouts.header')
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12 loader">
+                                        <div class="d-flex justify-content-center align-items-center vh-100 ">
+                                            <div class="spinner-grow text-primary" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 px-0 py-3 min-vh-100 page-content" style="display: none">
+                                        <!--                                    card area start-->
+                                        @yield('content')
+                                        <!--                                    card area end-->
+                                    </div>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                    <div class="col-12 p-0 mt-3">
+                                        <div class="alert-secondary  rounded d-flex flex-column flex-md-row justify-content-between text-secondary py-2 px-3">
+                                            <div>
+                                                Copy Right @ {{ \App\Custom::$info['short_name'] }} {{ date("Y") }}
+                                            </div>
+                                            <div>
+                                                Developed By <a class="text-primary font-weight-bold" href="http://mms-it.com">MMS IT</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
                                 </div>
-                            </li>
-                        @endguest
-                    </ul>
+                            </div>
+                        </div>
+                        <!--content end                    -->
+
+                    </div>
                 </div>
             </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+        </div>theme
     </div>
+
+
+<!-- Scripts -->
+    <script src="{{ asset('theme/js/jquery.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="{{ asset('theme/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('theme/vendor/data_table/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('theme/vendor/data_table/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('theme/js/app.js') }}"></script>
+
+    @yield('foot')
+    <script>
+        $(".dataTables_length,.dataTables_filter,.dataTable,.dataTables_paginate,.dataTables_info").parent().addClass("px-0");
+    </script>
 </body>
 </html>
