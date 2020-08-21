@@ -1,9 +1,9 @@
 @extends('layouts.lite')
-@section("title") welcome @endsection
+@section("title") Login @endsection
 @section('head')
     <style>
         .login-content{
-            background: white url('{{ asset('theme/images/welcome.jpg') }}');
+            background: white url('{{ asset('theme/images/login-img.svg') }}');
             background-size: contain;
             background-position: left;
             background-repeat: no-repeat;
@@ -29,9 +29,69 @@
                             <div class="col-12 col-md-6">
                                 <div class="p-4">
                                     <div class="d-flex align-items-center">
-                                        <img src="{{ asset('theme/images/welcome.jpg') }}" class="w-100" alt="">
+                                        <img src="{{ asset(\App\Custom::$info['c-logo']) }}" class="avatar shadow-sm border border-light mr-2" alt="">
+                                        <p class="text-uppercase font-weight-bold text-primary mb-0">Admin Login</p>
                                     </div>
                                     <hr>
+                                    <form method="POST" action="{{ route('login') }}">
+                                        @csrf
+
+                                        <div class="form-group">
+                                            <label for="email" class="text-secondary font-weight-bold d-flex align-items-end">
+                                                <i class="feather-mail text-primary h4 mb-0 mr-2"></i>
+                                                <span class="">User Name</span>
+                                            </label>
+
+                                            <div class="form-group">
+                                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                                @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="email" class="text-secondary font-weight-bold d-flex align-items-end">
+                                                <i class="feather-lock text-primary h4 mb-0 mr-2"></i>
+                                                <span class="">Password</span>
+                                            </label>
+
+                                            <div class="form-group">
+                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                                                @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                                <label class="form-check-label" for="remember">
+                                                    {{ __('Remember Me') }}
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group mb-0">
+
+                                            <button type="submit" class="btn btn-primary w-50 btn-rounded">
+                                                {{ __('Login') }}
+                                            </button>
+                                            <a href="{{url('auth/facebook')}}" class="btn btn-primary w-25 btn-rounded">
+                                                f
+                                            </a>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -41,4 +101,3 @@
         </div>
     </div>
 @endsection
-
