@@ -30,7 +30,7 @@
                                 <div class="p-4">
                                     <div class="d-flex align-items-center">
                                         <img src="{{ asset(\App\Custom::$info['c-logo']) }}" class="avatar shadow-sm border border-light mr-2" alt="">
-                                        <p class="text-uppercase font-weight-bold text-primary mb-0">Admin Login</p>
+                                        <p class="text-uppercase font-weight-bold text-primary mb-0">User Login</p>
                                     </div>
                                     <hr>
                                     <form method="POST" action="{{ route('login') }}">

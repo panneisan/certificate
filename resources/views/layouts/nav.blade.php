@@ -37,12 +37,26 @@
                 </a>
             </li>
             <li>
-                <div class="my-5"></div>
+                <div class="my-3">
+                    <h5>Courses</h5>
+                </div>
             </li>
-
-
-
-
+            <li>
+                <a class="menu-item" href="{{route('course.create')}}">
+                    <span>
+                        <i class="feather-plus-circle mr-1"></i>
+                        Add Course
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a class="menu-item" href="{{route('course.index')}}">
+                    <span>
+                        <i class="feather-list mr-1"></i>
+                       Course List
+                    </span>
+                </a>
+            </li>
             <li>
                 <a class="menu-item alert-danger text-danger" onclick="event.preventDefault();document.getElementById('logout-form').submit();" href="#">
                     <span>

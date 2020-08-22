@@ -14,7 +14,10 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $course = new Course();
+        $list= $course->latest()->get();
+        return view("course.courseList",compact("list"));
+
     }
 
     /**
@@ -24,7 +27,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('course.create');
     }
 
     /**
@@ -35,7 +38,24 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        return $request;
+        $request->validate([
+            'title'=>'required|min:4',
+            'outline'=>'required',
+            'photo'=>'required|mimes:png,jpg,gif,jpeg'
+        ]);
+        $dir ='gallery/';
+        $newName=uniqid()."_image.".$request->file("photo")->getClientOriginalExtension();
+        $request->file('photo')->move($dir,$newName);
+
+        $course =new Course();
+        $course->title =$request->title;
+        $course->outline =$request->outline;
+        $course->photo=$dir.$newName;
+        $course->save();
+
+        return redirect()->route("course.create")->with("status","Course is added");
+
     }
 
     /**
@@ -46,7 +66,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+         return view("course.course-show");
     }
 
     /**
@@ -57,7 +77,9 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        $info = $course;
+        return view("course.course-edit" ,compact('info'));
+
     }
 
     /**
@@ -69,7 +91,25 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $request->validate([
+            'title'=>'required|min:4',
+            'outline'=>'required',
+            'photo'=>'required|mimes:png,jpg,gif,jpeg'
+        ]);
+        $course->title = $request->title;
+        $course->outline= $request->outline;
+        if($request->hasFile("photo")){
+
+            $dir ='gallery/';
+            $newName=uniqid()."_image.".$request->file("photo")->getClientOriginalExtension();
+            $request->file('photo')->move($dir,$newName);
+            $course->photo=$dir.$newName;
+        }
+
+        $course->update();
+
+        return redirect()->route("course.index")->with("status","Post Update Sucessfully");
+
     }
 
     /**
@@ -80,6 +120,9 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $name=$course->title;
+        $course->delete();
+        return redirect()->back()->with("status",$name."is deleted");
+
     }
 }

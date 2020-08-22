@@ -21,3 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('auth/{provider}', 'FacebookLoginController@redirect');
 Route::get('auth/{provider}/callback', 'FacebookLoginController@callback');
+
+Route::resource("/course",'CourseController');
+Route::resource("/bacth",'BatchController');

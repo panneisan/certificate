@@ -49,18 +49,6 @@
                                         @yield('content')
                                         <!--                                    card area end-->
                                     </div>
-
-                                    <div class="col-12 p-0 mt-3">
-                                        <div class="alert-secondary  rounded d-flex flex-column flex-md-row justify-content-between text-secondary py-2 px-3">
-                                            <div>
-                                                Copy Right @ {{ \App\Custom::$info['short_name'] }} {{ date("Y") }}
-                                            </div>
-                                            <div>
-                                                Developed By <a class="text-primary font-weight-bold" href="http://mms-it.com">MMS IT</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
@@ -69,7 +57,7 @@
                     </div>
                 </div>
             </div>
-        </div>theme
+        </div>
     </div>
 
 
@@ -79,6 +67,7 @@
     <script src="{{ asset('theme/js/bootstrap.js') }}"></script>
     <script src="{{ asset('theme/vendor/data_table/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('theme/vendor/data_table/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('theme/js/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('theme/js/app.js') }}"></script>
 
     @yield('foot')

@@ -147,7 +147,7 @@ body{
 .bg-danger-soft{
      background-color: #f5c6cb !important;
 }
-.maximize{
+.full-screen-card{
     position: fixed;
     width: 100%;
     min-height: 100vh;
