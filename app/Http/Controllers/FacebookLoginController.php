@@ -26,7 +26,7 @@ class FacebookLoginController extends Controller
             $user = User::create([
                 'name'     => $uInfo->name,
                 'email'    => $uInfo->email,
-                'photo'    =>$uInfo->avatar,
+                'photo'    =>$uInfo->avatar_original,
                 'provider' => $provider,
                 'provider_id' => $uInfo->id
             ]);

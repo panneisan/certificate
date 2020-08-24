@@ -20,20 +20,15 @@
                                 <h3> <i class="feather-plus-circle"></i>
                                     Course List</h3>
                                 <div class="">
-                                    <a href="" class="btn btn-outline-primary maximize-btn"><i class="feather-maximize-2"></i></a>
-                                    <a href="{{route('course.create')}}" class="btn btn-outline-primary">
-                                        <i class="feather-plus-square"></i>
-                                    </a>
+                                    <button class="btn btn-outline-secondary btn-sm btn-maximize" title="Maximize">
+                                        <i class="fas fa-expand-alt fa-fw"></i>
+                                    </button>
                                 </div>
 
                             </div>
                             <hr>
-                            @if(session('status'))
-                                <div class="alert alert-success">
-                                    {{session('status') }}
-                                </div>
-                            @endif
-                            <table class="table table-striped" id="data_table">
+                            @include('layouts.toast')
+                            <table class="table text-center table-hover table-bordered table-responsive-xl mb-0" id="data_table">
                                 <thead>
                                 <tr class="text-center">
                                     <th>id</th>
@@ -46,56 +41,21 @@
                                 </thead>
                                 <tbody>
                                 @foreach($list as $l)
-                                    <tr class="text-center">
+                                    <tr class="">
                                         <td>{{$l->id}}</td>
                                         <td>{{$l->title}}</td>
                                         <td><img src="{{asset($l->photo)}}" alt="" class="img-thumbnails rounded rounded-circle" style="width: 50px;height: 50px"></td>
                                         <td>{!! $l->outline !!}</td>
 
-                                        <td class="d-flex">
-                                            <a href="{{route('course.edit',$l->id)}}" class="btn mr-2"><i class="feather-edit"></i></a>
-                                            <button class="btn mr-2" id="info"><i class="feather-info"></i></button>
+                                        <td class="d-flex no-warp justify-content-around">
+                                            <a href="{{route('course.edit',$l->id)}}" class="btn btn-outline-warning mr-2 no-warp"><i class="feather-edit"></i></a>
                                             <form action="{{route('course.destroy',$l->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn" onclick="confirm('Do You Really want to delete?')"><i class="feather-delete"></i></button>
+                                                <button class="btn btn-outline-danger no-warp" onclick="confirm('Do You Really want to delete?')"><i class="feather-delete"></i></button>
                                             </form>
                                         </td>
-                                        <td>{{$l->created_at}}</td>
-
-
-{{--                                        modal--}}
-                                    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">Course Details</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="">
-                                                            <img src="{{$l->photo}}" alt="" class="card-img-top w-100">
-                                                    </div>
-                                                    <hr>
-                                                    <div>
-                                                        <h4>Course Title</h4>
-                                                        <span>{{$l->title}}</span>
-                                                    </div>
-                                                    <br>
-
-                                                    <div>
-                                                        <h4>Course Outline</h4>
-                                                        <span>{!! $l->outline !!}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <td>{{ $l->created_at->diffforhumans()  }}</td>
 
                                 @endforeach
                                 </tbody>
@@ -117,16 +77,10 @@
                 $("#infoModal").modal();
             });
         });
-        $(".maximize-btn").click(function(e){
-            e.preventDefault();
-            let current = $(this).closest(".card")
-            current.toggleClass("full-screen-card");
-            if(current.hasClass("full-screen-card")){
-                $(this).html(`<i class="feather-maximize-2"></i>`);
-            }else{
-                $(this).html(`<i class="feather-maximize-2"></i>`);
 
-            }
+        $(".table").dataTable({
+            responsive:true,
+            sort:false,
         });
     </script>
 @stop

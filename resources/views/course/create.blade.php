@@ -56,6 +56,7 @@
            </div>
        </div>
    </div>
+   @include('layouts.toast')
 @endsection
 @section('foot')
     <script>

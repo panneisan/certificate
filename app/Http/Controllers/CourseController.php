@@ -54,7 +54,7 @@ class CourseController extends Controller
         $course->photo=$dir.$newName;
         $course->save();
 
-        return redirect()->route("course.create")->with("status","Course is added");
+        return redirect()->route("course.create")->with("toast","<b>$course->title</b> is successfully Added 😊");
 
     }
 
@@ -65,8 +65,8 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Course $course)
-    {
-         return view("course.course-show");
+    {    $info = $course;
+         return view("course.course-edit",compact('info'));
     }
 
     /**
@@ -108,7 +108,7 @@ class CourseController extends Controller
 
         $course->update();
 
-        return redirect()->route("course.index")->with("status","Post Update Sucessfully");
+        return redirect()->route("course.index")->with("toast","<b>$course->title</b> is successfully Updated 😊");
 
     }
 
@@ -122,7 +122,7 @@ class CourseController extends Controller
     {
         $name=$course->title;
         $course->delete();
-        return redirect()->back()->with("status",$name."is deleted");
+        return redirect()->back()->with("toast","<b>$name</b> is successfully Deleted 😊");
 
     }
 }

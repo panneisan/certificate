@@ -2,7 +2,10 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\isGuest;
+use App\Http\Middleware\isStudent;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Support\Facades\App;
 
 class Kernel extends HttpKernel
 {
@@ -19,6 +22,10 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \App\Http\Middleware\isAdmin::class,
+        \App\Http\Middleware\isStudent::class,
+        \App\Http\Middleware\isGuest::class,
+
     ];
 
     /**
@@ -60,6 +67,9 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'isAdmin'=>\App\Http\Middleware\isAdmin::class,
+        'isGuest'=>\App\Http\Middleware\isGuest::class,
+        'isStudent'=>\App\Http\Middleware\isStudent::class,
     ];
 
     /**

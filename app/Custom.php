@@ -13,7 +13,7 @@ class Custom
         "c-logo" => "theme/images/c-logo.jpg"
     ];
 
-    public static $role = ["admin","student","guest"];
+    public static $role = ["0","1","2"];
 
 
 }

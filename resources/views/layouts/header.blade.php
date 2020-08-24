@@ -32,9 +32,9 @@
         <div class="dropdown">
             <a class="btn btn-light bg-transparent text-white border-0 dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 {{--                <img src="{{ asset(Auth::user()->photo) }}" class="rounded-circle" style="width: 30px" alt="">--}}
-{{--                <span class="d-none d-lg-inline">--}}
-{{--                    {{ Auth::user()->name }}--}}
-{{--                </span>--}}
+                <span class="d-none d-lg-inline">
+                    {{ Auth::user()->name }}
+                </span>
             </a>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">

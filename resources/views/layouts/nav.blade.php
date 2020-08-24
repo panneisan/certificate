@@ -23,40 +23,68 @@
             <li>
                 <a class="menu-item" href="">
                     <span>
-                        <i class="feather-link mr-1"></i>
-                        Link
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a class="menu-item" href="">
-                    <span>
                         <i class="feather-users mr-1"></i>
                         Viewer
                     </span>
                 </a>
             </li>
             <li>
-                <div class="my-3">
-                    <h5>Courses</h5>
-                </div>
+                <h5 class="text-secondary">
+                    Batch Management
+                </h5>
             </li>
             <li>
-                <a class="menu-item" href="{{route('course.create')}}">
+                <a class="menu-item" href="{{ route('batch.create') }}">
                     <span>
-                        <i class="feather-plus-circle mr-1"></i>
+                        <i class="feather-user-plus mr-1"></i>
+                        Add Batch
+                    </span>
+
+                </a>
+            </li>
+            <li>
+                <a class="menu-item" href="{{ route('batch.index') }}">
+                    <span>
+                        <i class="fas fa-list mr-1"></i>
+                        Batch List
+                    </span>
+                    <span class="badge badge-pill badge-light shadow-sm">
+                        {{ \App\Batch::count() }}
+                    </span>
+                </a>
+            </li>
+            <li>
+                <h5 class="text-secondary">
+                    Course Management
+                </h5>
+            </li>
+            <li>
+                <a class="menu-item" href="{{ route('course.create') }}">
+                    <span>
+                        <i class="feather-plus-circle"></i>
                         Add Course
                     </span>
                 </a>
             </li>
             <li>
-                <a class="menu-item" href="{{route('course.index')}}">
+                <a class="menu-item" href="{{ route('course.index') }}">
                     <span>
-                        <i class="feather-list mr-1"></i>
-                       Course List
+                        <i class="feather-list"></i>
+                        Course List
+                    </span>
+                    <span class="badge badge-pill badge-light shadow-sm">
+                        {{ \App\Course::count() }}
                     </span>
                 </a>
             </li>
+
+            <li>
+                <div class="my-5"></div>
+            </li>
+
+
+
+
             <li>
                 <a class="menu-item alert-danger text-danger" onclick="event.preventDefault();document.getElementById('logout-form').submit();" href="#">
                     <span>

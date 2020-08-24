@@ -49,6 +49,7 @@
                                         @yield('content')
                                         <!--                                    card area end-->
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -57,7 +58,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>theme
     </div>
 
 
@@ -67,7 +68,6 @@
     <script src="{{ asset('theme/js/bootstrap.js') }}"></script>
     <script src="{{ asset('theme/vendor/data_table/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('theme/vendor/data_table/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('theme/js/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('theme/js/app.js') }}"></script>
 
     @yield('foot')

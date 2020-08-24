@@ -4,7 +4,16 @@
     <div class="row">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-white">
+                            <li class="breadcrumb-item"><a href="">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('course.index')}}">Courses</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Course-Edit</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="co-12 col-md-6">
                     <div class="card">
                         <div class="card-body">
                             <h3>Course-Edit</h3>
@@ -28,10 +37,10 @@
                                 <div class="form-group">
                                     <div class="form-inline d-flex justify-content-between align-items-end">
                                         <div class="position-relative">
-                                            <button type="button" class="btn btn-light position-absolute edit-photo" style="top: 5px;left: 5px">
-                                                <i class="feather-edit-3 text-primary"></i>
+                                            <button type="button" class="btn btn-light position-absolute edit-photo" style="bottom: 5px;right: 15px">
+                                                <i class="fas fa-edit text-primary"></i>
                                             </button>
-                                            <img src="{{ asset($info->photo) }}" style="width: 200px;" class="mr-2 rounded current-img" alt="">
+                                            <img src="{{ asset($info->photo) }}" style="height: 200px" class="mr-2 rounded current-img" alt="">
                                         </div>
                                         <input type="file" name="photo"  id="file-upload" accept="image/png,image/jpeg" onchange='openFile(event)' class="form-control d-none flex-grow-1 p-1 mr-2">
                                     </div>
@@ -45,7 +54,7 @@
                                         <label for="outline">Course Outlines</label>
                                         <textarea id="outline" name="outline" class="form-control">{!! $info->outline !!}</textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-edit"></i>Update Info</button>
+                                    <button type="submit" class="btn btn-outline-primary"><i class="fa fa-edit"></i>Update Info</button>
                             </form>
                         </div>
                     </div>
