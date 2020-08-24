@@ -52,7 +52,7 @@
                                             <form action="{{route('course.destroy',$l->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-outline-danger no-warp" onclick="confirm('Do You Really want to delete?')"><i class="feather-delete"></i></button>
+                                                <button class="btn btn-outline-danger no-warp" onclick="confirm('Do You Really want to delete?')"><i class="feather-trash"></i></button>
                                             </form>
                                         </td>
                                         <td>{{ $l->created_at->diffforhumans()  }}</td>

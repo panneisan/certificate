@@ -7,6 +7,9 @@ use Laravel\Socialite\Facades\Socialite;
 use App\User;
 class FacebookLoginController extends Controller
 {
+    public function index(){
+        return view("facebook");
+    }
     public function redirect($provider)
     {
         return Socialite::driver($provider)->redirect();

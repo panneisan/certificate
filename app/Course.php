@@ -9,4 +9,9 @@ class Course extends Model
     protected $fillable = [
         'title','outline','photo'
     ];
+    public function getBatch()
+    {
+        return $this->hasOne('App\User',"course_id");
+    }
+
 }

@@ -50,10 +50,10 @@
                             <div class="form-group">
                                 <label for="c_outline">Course Outline</label>
                                 <select class="custom-select" name="course_id">
-                                    <option selected disabled>Select Course</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option>Select Course Outline</option>
+                                    @foreach($courseList as $cl)
+                                        <option value="{{$cl->id}}" {{old("course_id")==$cl->id ?"selected" :""}}>{{$cl->title}}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
