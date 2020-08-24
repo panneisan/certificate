@@ -87,6 +87,9 @@
                                         <button type="submit" class="btn btn-primary w-50 btn-rounded">
                                             {{ __('Login') }}
                                         </button>
+                                        <a href="{{url('auth/facebook')}}" class="btn btn-primary btn-rounded w-25 btn-rounded">
+                                            <i class="feather-facebook"></i>
+                                        </a>
                                     </div>
                                 </form>
                             </div>

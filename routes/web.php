@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('auth/{provider}', 'FacebookLoginController@redirect');
 Route::get('auth/{provider}/callback', 'FacebookLoginController@callback');
 
-Route::resource('/batch','BatchController')->middleware('auth');
-Route::resource('/course','CourseController')->middleware('auth');
-
+Route::prefix("admin",function (){
+    Route::resource('/batch','BatchController')->middleware('auth');
+    Route::resource('/course','CourseController')->middleware('auth');
+});
